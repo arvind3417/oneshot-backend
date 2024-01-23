@@ -51,19 +51,20 @@ app.get("/api/ok", (_req, res) =>
 // Custom middleware
 app.use(routeNotFound);
 app.use(errorHandler);
+export default app;
 
-const port = process.env.PORT || PORT;
+// const port = process.env.PORT || PORT;
 
-try {
-  // connect to database
-  if (!process.env.MONGO_URI)
-    throw new Error("No connection string found in .env file");
-  connectDB(process.env.MONGO_URI);
+// try {
+//   // connect to database
+//   if (!process.env.MONGO_URI)
+//     throw new Error("No connection string found in .env file");
+//   connectDB(process.env.MONGO_URI);
 
-  // Server setup
-  app.listen(port, () => {
-    console.log(`Server listening on -> PORT ${port}`);
-  });
-} catch (error) {
-  console.error(error);
-}
+//   // Server setup
+//   app.listen(port, () => {
+//     console.log(`Server listening on -> PORT ${port}`);
+//   });
+// } catch (error) {
+//   console.error(error);
+// }
