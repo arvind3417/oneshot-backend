@@ -11,7 +11,7 @@ const options: swaggerJsdoc.Options = {
     info: {
       title: "REST API Docs",
       version: '1.0.0',
-      description: 'API documentation for the e-commerce marketplace',
+      description: 'API documentation for the OneShot.ai',
     },
     components: {
       securitySchemes: {
