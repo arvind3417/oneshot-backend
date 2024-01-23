@@ -1,6 +1,48 @@
 import mongoose from 'mongoose';
 
-const blogSchema =new  mongoose.Schema({
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     Blog:
+ *       type: object
+ *       required:
+ *         - title
+ *         - aboutBlog
+ *         - ownerId
+ *       properties:
+ *         title:
+ *           type: string
+ *           maxLength: 100
+ *           description: The title of the blog.
+ *         aboutBlog:
+ *           type: string
+ *           maxLength: 1000
+ *           description: The content of the blog.
+ *         imageurl:
+ *           type: string
+ *           description: The URL of the blog image.
+ *         likes:
+ *           type: number
+ *           default: 0
+ *           description: The number of likes for the blog.
+ *         comments:
+ *           type: number
+ *           default: 0
+ *           description: The number of comments on the blog.
+ *         allComments:
+ *           type: array
+ *           items:
+ *             type: string
+ *           default: []
+ *           description: An array containing all comments on the blog.
+ *         ownerId:
+ *           type: string
+ *           format: uuid
+ *           description: The ID of the owner (user) of the blog.
+ */
+
+const blogSchema = new mongoose.Schema({
     title: {
         type: String,
         required: [true, "Title can not be empty"],

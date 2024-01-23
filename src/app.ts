@@ -15,8 +15,8 @@ import { errorHandler } from "./middleware/errorHandler";
 
 // routes
 import { authRouter } from "./routes/authRoutes";
-import { blob } from "stream/consumers";
 import { blogRouter } from "./routes/blogRoutes";
+import swaggerDocs from "./config/swagger/swagger";
 
 // Use express app
 const app = express();
@@ -30,12 +30,24 @@ app.use(cors());
 app.use(`${BASEURL}/auth`, authRouter);
 app.use(`${BASEURL}/blog`, blogRouter);
 
+swaggerDocs(app)
 
-// Ping route
-app.get("/", (_req: Request, _res: Response) =>
-  _res.status(200).send(httpResponse(true, "OK"))
+
+/**
+ * @swagger
+ * /ok:
+ *   get:
+ *     tags:
+ *       - Healthcheck
+ *     summary: Health Check
+ *     description: Responds if the app is up and running
+ *     responses:
+ *       200:
+ *         description: App is up and running
+ */
+app.get("/api/ok", (_req, res) =>
+  res.status(200).send(httpResponse(true, "OK", {}))
 );
-
 // Custom middleware
 app.use(routeNotFound);
 app.use(errorHandler);
